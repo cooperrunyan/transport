@@ -1,5 +1,3 @@
-import { DEFAULT_COLOR_SCHEME } from './constants';
-
 const mainPallette = {
   grey: {
     0: '#FFFFFF',
@@ -68,12 +66,16 @@ const mainPallette = {
   },
 };
 
-const colors = {
-  light: mainPallette,
-  dark: flip(mainPallette),
-};
-
-export const pallette = colors[DEFAULT_COLOR_SCHEME];
+export const colors = {
+  light: {
+    scheme: 'light',
+    pallette: mainPallette,
+  },
+  dark: {
+    scheme: 'dark',
+    pallette: flip(mainPallette),
+  },
+} as const;
 
 function flip<T extends { [key: string]: { [key: number]: string } }>(pallette: T) {
   const clone: typeof pallette = JSON.parse(JSON.stringify(pallette));
