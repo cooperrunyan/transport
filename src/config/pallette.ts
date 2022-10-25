@@ -73,7 +73,8 @@ export const colors = {
   },
   dark: {
     scheme: 'dark',
-    pallette: flip(mainPallette),
+    pallette: mainPallette,
+    // pallette: flip(mainPallette),
   },
 } as const;
 

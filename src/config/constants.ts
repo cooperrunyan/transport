@@ -1,1 +1,1 @@
-export const DEFAULT_COLOR_SCHEME = 'light';
+export const DEFAULT_COLOR_SCHEME = 'dark';
