@@ -19,7 +19,9 @@ const App: React.FC<AppProps> = ({ Component, pageProps }) => {
       <Head>
         <title>Transport</title>
       </Head>
-      <Component {...pageProps} />
+      <div id="app">
+        <Component {...pageProps} />
+      </div>
     </>
   );
 };

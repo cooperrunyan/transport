@@ -9,8 +9,19 @@
 }
 
 html {
-  box-sizing: inherit;
+  box-sizing: border-box;
   background-color: var(--grey-0);
   font-family: 'Inter', sans-serif;
   color: var(--grey-10);
+
+  min-height: 100vh;
+  max-width: 100vw;
+  overflow-x: hidden;
+  overscroll-behavior: none;
+}
+
+#app {
+  min-height: 100vh;
+  max-width: 100vw;
+  overflow-x: hidden;
 }
