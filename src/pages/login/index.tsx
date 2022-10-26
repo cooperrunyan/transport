@@ -19,7 +19,7 @@ const Page: React.FC = () => {
             </a>
           </li>
           <li>
-            <a>
+            <a href="https://github.com/login/oauth/authorize?client_id=949c8e5210dee77e9897">
               <Github />
               Sign in with Github
             </a>
