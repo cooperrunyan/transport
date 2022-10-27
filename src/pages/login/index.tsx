@@ -5,7 +5,19 @@ import { Google } from '../../icons/Google';
 import { Logo } from '../../icons/Logo';
 import style from '../../style/pages/login.module.scss';
 
+import { FacebookAuthProvider, getAuth, GithubAuthProvider, GoogleAuthProvider, signInWithRedirect } from 'firebase/auth';
+import { useRouter } from 'next/router';
+import { useEffect } from 'react';
+import { app } from '../../firebase/client';
+
 const Page: React.FC = () => {
+  const router = useRouter();
+
+  useEffect(() => {
+    console.log(getAuth().currentUser);
+    if (getAuth().currentUser) router.push('/');
+  }, []);
+
   return (
     <div>
       <Logo className={style.Logo} />
@@ -14,23 +26,23 @@ const Page: React.FC = () => {
         <h1>Log in</h1>
         <ul>
           <li>
-            <a>
+            <a href="/login/email">
               <Email /> Sign in with email
             </a>
           </li>
-          <li>
-            <a href="https://github.com/login/oauth/authorize?client_id=949c8e5210dee77e9897">
+          <li onClick={() => signInWithRedirect(getAuth(app), new GithubAuthProvider())}>
+            <a>
               <Github />
               Sign in with Github
             </a>
           </li>
-          <li>
+          <li onClick={() => signInWithRedirect(getAuth(app), new GoogleAuthProvider())}>
             <a>
               <Google />
               Sign in with Google
             </a>
           </li>
-          <li>
+          <li onClick={() => signInWithRedirect(getAuth(app), new FacebookAuthProvider())}>
             <a>
               <Facebook /> Sign in with Facebook
             </a>

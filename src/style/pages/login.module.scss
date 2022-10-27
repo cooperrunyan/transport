@@ -12,6 +12,7 @@
   height: calc(440rem / 16);
   opacity: 0.15;
   transform: translate(50%, 50%);
+  z-index: 1;
 }
 
 .content {
@@ -23,43 +24,106 @@
   gap: calc(32rem / 16);
   align-items: center;
   position: relative;
+  z-index: 3;
+
+  h1 {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: calc(32rem / 16);
+  }
+
+  h1 button {
+    all: inherit;
+    width: fit-content;
+    cursor: pointer;
+    transition: all 0.1s ease-in-out;
+
+    &.inactive {
+      opacity: 0.5;
+    }
+  }
+
+  &.email {
+    form input {
+      padding: calc(12rem / 16) calc(16rem / 16);
+    }
+
+    .LogoBG {
+      width: calc(320rem / 16);
+      height: calc(320rem / 16);
+    }
+  }
 
   h1 {
     font-weight: 600;
     font-size: calc(48rem / 16);
     line-height: calc(58rem / 16);
     letter-spacing: -0.03em;
+    z-index: 3;
+    position: relative;
   }
 
-  ul {
+  ul,
+  form {
     display: flex;
     flex-direction: column;
     width: 100%;
     gap: calc(8rem / 16);
     list-style: none;
+    z-index: 3;
+    position: relative;
 
-    a {
+    button {
       display: flex;
+      flex-direction: column;
+      justify-content: center;
       align-items: center;
+      padding: calc(8rem / 16) calc(16rem / 16);
+      background: var(--blue-5);
       border-radius: calc(4rem / 16);
-      border: calc(1rem / 16) solid var(--grey-2);
-      padding: calc(18rem / 16) calc(24rem / 16);
-      gap: calc(16rem / 16);
       font-weight: 600;
       font-size: calc(16rem / 16);
-      line-height: calc(19rem / 16);
       letter-spacing: -0.03em;
-      width: 100%;
-      background: rgba(255, 255, 255, 0.5);
-      backdrop-filter: blur(8px);
+      color: var(--grey-0);
+      border: 0;
+      outline: 0;
       cursor: pointer;
-      transition: all 0.1s ease-in-out;
-      text-decoration: none;
+      width: fit-content;
+    }
+  }
 
-      &:hover {
-        border-color: var(--blue-5);
-        background-color: var(--blue-0);
-      }
+  a,
+  input {
+    display: flex;
+    align-items: center;
+    border-radius: calc(4rem / 16);
+    border: calc(1rem / 16) solid var(--grey-2);
+    padding: calc(18rem / 16) calc(24rem / 16);
+    gap: calc(16rem / 16);
+    font-weight: 600;
+    font-size: calc(16rem / 16);
+    line-height: calc(19rem / 16);
+    letter-spacing: -0.03em;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(8px);
+    cursor: pointer;
+    transition: all 0.1s ease-in-out;
+    text-decoration: none;
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.5);
+      outline: 0;
+      border-color: var(--blue-5);
+    }
+
+    &:active,
+    &:focus {
+      outline: 0;
+      border-color: var(--blue-5);
+      background-color: var(--blue-0);
     }
   }
 }
