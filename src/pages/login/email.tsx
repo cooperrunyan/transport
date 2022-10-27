@@ -5,10 +5,10 @@ import { collection, doc, getDocs, query, setDoc, where } from 'firebase/firesto
 
 import { useRouter } from 'next/router';
 
-import { useRef, useState } from 'react';
-import { Logo } from '-/components/icons/Logo';
+import { LogoIcon } from '-/components/icons/Logo';
 import { auth, db } from '-/services/firebase/client';
-import style from '-style/pages/login.module.scss';
+import style from '-/style/pages/login.module.scss';
+import { useRef, useState } from 'react';
 
 import type { UserData } from '-/lib/getUserData';
 
@@ -28,9 +28,9 @@ const Page: React.FC<{ data: UserData }> = ({ data }) => {
 
   return (
     <div>
-      <Logo className={style.Logo} />
+      <LogoIcon className={style.Logo} />
       <div className={style.content + ' ' + style.email}>
-        <Logo className={style.LogoBG} />
+        <LogoIcon className={style.LogoBG} />
         <h1>
           <button onClick={() => setActivePage('login')} className={activePage === 'login' ? style.active : style.inactive}>
             Log in

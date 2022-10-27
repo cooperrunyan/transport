@@ -1,11 +1,11 @@
 import { FacebookAuthProvider, getAuth, GithubAuthProvider, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import { collection, doc, setDoc } from 'firebase/firestore';
 
-import { Email } from '-/components/icons/Email';
-import { Facebook } from '-/components/icons/Facebook';
-import { Github } from '-/components/icons/Github';
-import { Google } from '-/components/icons/Google';
-import { Logo } from '-/components/icons/Logo';
+import { EmailIcon } from '-/components/icons/Email';
+import { FacebookIcon } from '-/components/icons/Facebook';
+import { GithubIcon } from '-/components/icons/Github';
+import { GoogleIcon } from '-/components/icons/Google';
+import { LogoIcon } from '-/components/icons/Logo';
 import style from '-/style/pages/login.module.scss';
 
 import { UserData } from '-/lib/getUserData';
@@ -16,31 +16,31 @@ export { getServerSideProps } from '-/lib/getUserData';
 const Page: React.FC<{ data: UserData }> = ({ data }) => {
   return (
     <div>
-      <Logo className={style.Logo} />
+      <LogoIcon className={style.Logo} />
       <div className={style.content}>
-        <Logo className={style.LogoBG} />
+        <LogoIcon className={style.LogoBG} />
         <h1>Log in</h1>
         <ul>
           <li>
             <a href="/login/email">
-              <Email /> Sign in with email
+              <EmailIcon /> Sign in with email
             </a>
           </li>
           <li onClick={() => signinWith(GithubAuthProvider)}>
             <a>
-              <Github />
+              <GithubIcon />
               Sign in with Github
             </a>
           </li>
           <li onClick={() => signinWith(GoogleAuthProvider)}>
             <a>
-              <Google />
+              <GoogleIcon />
               Sign in with Google
             </a>
           </li>
           <li onClick={() => signinWith(FacebookAuthProvider)}>
             <a>
-              <Facebook /> Sign in with Facebook
+              <FacebookIcon /> Sign in with Facebook
             </a>
           </li>
         </ul>

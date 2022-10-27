@@ -1,6 +1,6 @@
 import { SVGAttributes } from 'react';
 
-export const Logo: React.FC<SVGAttributes<SVGElement>> = props => (
+export const LogoIcon: React.FC<SVGAttributes<SVGElement>> = props => (
   <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" color="var(--grey-10)" {...props}>
     <path d="M1.79999 9.82046L2.54292 5.40002H23.3698L22.6268 9.82046H14.8632L11.3962 30.7587H6.09661L9.56362 9.82046H1.79999Z" fill="currentColor" />
     <path
