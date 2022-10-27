@@ -1,16 +1,17 @@
-import { Email } from '../../components/icons/Email';
-import { Facebook } from '../../components/icons/Facebook';
-import { Github } from '../../components/icons/Github';
-import { Google } from '../../components/icons/Google';
-import { Logo } from '../../components/icons/Logo';
-import style from '../../style/pages/login.module.scss';
-
 import { FacebookAuthProvider, getAuth, GithubAuthProvider, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import { collection, doc, setDoc } from 'firebase/firestore';
-import { UserData } from '../../lib/getUserData';
-import { app, db } from '../../services/firebase/client';
 
-export { getServerSideProps } from '../../lib/getUserData';
+import { Email } from '-/components/icons/Email';
+import { Facebook } from '-/components/icons/Facebook';
+import { Github } from '-/components/icons/Github';
+import { Google } from '-/components/icons/Google';
+import { Logo } from '-/components/icons/Logo';
+import style from '-/style/pages/login.module.scss';
+
+import { UserData } from '-/lib/getUserData';
+import { app, db } from '-/services/firebase/client';
+
+export { getServerSideProps } from '-/lib/getUserData';
 
 const Page: React.FC<{ data: UserData }> = ({ data }) => {
   return (

@@ -1,5 +1,5 @@
 import { signOut } from 'firebase/auth';
-import { auth } from '../services/firebase/client';
+import { auth } from '-/services/firebase/client';
 
 import nookies from 'nookies';
 

@@ -1,14 +1,18 @@
+import nookies from 'nookies';
+
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
 import { collection, doc, getDocs, query, setDoc, where } from 'firebase/firestore';
-import { useRouter } from 'next/router';
-import nookies from 'nookies';
-import { useRef, useState } from 'react';
-import { Logo } from '../../components/icons/Logo';
-import { UserData } from '../../lib/getUserData';
-import { auth, db } from '../../services/firebase/client';
-import style from '../../style/pages/login.module.scss';
 
-export { getServerSideProps } from '../../lib/getUserData';
+import { useRouter } from 'next/router';
+
+import { useRef, useState } from 'react';
+import { Logo } from '-/components/icons/Logo';
+import { auth, db } from '-/services/firebase/client';
+import style from '-style/pages/login.module.scss';
+
+import type { UserData } from '-/lib/getUserData';
+
+export { getServerSideProps } from '-/lib/getUserData';
 
 const Page: React.FC<{ data: UserData }> = ({ data }) => {
   const router = useRouter();

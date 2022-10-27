@@ -1,9 +1,9 @@
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
-import { AuthGuard } from '../context/AuthGuard';
-import { ThemeContextProvider } from '../context/ThemeContext';
+import { AuthGuard } from '-/context/AuthGuard';
+import { ThemeContextProvider } from '-/context/ThemeContext';
 
-import '../style/base.scss';
+import '-/style/base.scss';
 
 const App: React.FC<AppProps> = ({ Component, pageProps }) => (
   <div id="app">

@@ -3,7 +3,8 @@ import nookies from 'nookies';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { auth } from '../services/firebase/client';
+
+import { auth } from '-/services/firebase/client';
 
 const loginRoutes = [/\/login/, /\/login\/email/];
 

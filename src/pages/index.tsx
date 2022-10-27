@@ -1,5 +1,5 @@
-import type { UserData } from '../lib/getUserData';
-import { logout } from '../lib/logout';
+import type { UserData } from '-/lib/getUserData';
+import { logout } from '-/lib/logout';
 
 const Page: React.FC<{ data: UserData }> = ({ data }) => {
   return (

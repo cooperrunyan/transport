@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useState } from 'react';
-import { DEFAULT_COLOR_SCHEME } from '../config/constants';
-import { colors } from '../config/pallette';
+import { DEFAULT_COLOR_SCHEME } from '-/config/constants';
+import { colors } from '-/config/pallette';
 
 type Theme = {
   scheme: 'light' | 'dark';
