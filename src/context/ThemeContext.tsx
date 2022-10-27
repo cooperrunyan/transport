@@ -37,7 +37,7 @@ export const ThemeContextProvider: React.FC<{ children: any }> = ({ children }) 
   useEffect(() => {
     setVariables(theme);
     document?.querySelector('#favicon')?.setAttribute('href', `/favicon/${theme.scheme}/favicon.ico`);
-  }, [theme]);
+  }, [theme, children]);
 
   return <ThemeContext.Provider value={theme}>{children}</ThemeContext.Provider>;
 };
