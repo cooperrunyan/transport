@@ -2,7 +2,7 @@ import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'fire
 import { collection, doc, getDocs, query, setDoc, where } from 'firebase/firestore';
 import { useRouter } from 'next/router';
 import { useEffect, useRef, useState } from 'react';
-import { Logo } from '../../icons/Logo';
+import { Logo } from '../../components/icons/Logo';
 import { auth, db } from '../../services/firebase/client';
 import style from '../../style/pages/login.module.scss';
 

@@ -1,8 +1,8 @@
-import { Email } from '../../icons/Email';
-import { Facebook } from '../../icons/Facebook';
-import { Github } from '../../icons/Github';
-import { Google } from '../../icons/Google';
-import { Logo } from '../../icons/Logo';
+import { Email } from '../../components/icons/Email';
+import { Facebook } from '../../components/icons/Facebook';
+import { Github } from '../../components/icons/Github';
+import { Google } from '../../components/icons/Google';
+import { Logo } from '../../components/icons/Logo';
 import style from '../../style/pages/login.module.scss';
 
 import { FacebookAuthProvider, getAuth, GithubAuthProvider, GoogleAuthProvider, signInWithRedirect } from 'firebase/auth';
