@@ -1,6 +1,6 @@
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
-import { ThemeContextProvider } from '../components/ThemeContext';
+import { ThemeContextProvider } from '../context/ThemeContext';
 import { AuthGuard } from '../context/AuthGuard';
 
 import '../style/base.scss';
