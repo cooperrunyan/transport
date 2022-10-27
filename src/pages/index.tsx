@@ -1,6 +1,6 @@
 import { signOut } from 'firebase/auth';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { auth } from '../firebase/client';
+import { auth } from '../services/firebase/client';
 
 const Page: React.FC = () => {
   const [user] = useAuthState(auth);

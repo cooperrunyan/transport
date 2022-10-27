@@ -1,8 +1,9 @@
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
+import { collection, doc, getDocs, query, setDoc, where } from 'firebase/firestore';
 import { useRouter } from 'next/router';
 import { useEffect, useRef, useState } from 'react';
-import { auth } from '../../firebase/client';
 import { Logo } from '../../icons/Logo';
+import { auth, db } from '../../services/firebase/client';
 import style from '../../style/pages/login.module.scss';
 
 const Page: React.FC = () => {
@@ -38,7 +39,25 @@ const Page: React.FC = () => {
           <form
             onSubmit={async e => {
               e.preventDefault();
-              signInWithEmailAndPassword(auth, loginEmail.current!.value, loginPassword.current!.value);
+
+              const username = loginEmail.current!.value;
+
+              const isEmail =
+                /(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/i.test(
+                  username,
+                );
+
+              let email = '';
+
+              if (isEmail) email = username;
+              else {
+                const q = query(collection(db, 'users'), where('username', '==', username));
+                (await getDocs(q)).forEach(acc => {
+                  email = acc.data().email;
+                });
+              }
+
+              signInWithEmailAndPassword(auth, email, loginPassword.current!.value);
               if (auth.currentUser) router.push('/');
             }}>
             <input ref={loginEmail} name="email" type="text" placeholder="Username/Email" />
@@ -51,7 +70,12 @@ const Page: React.FC = () => {
             onSubmit={async e => {
               e.preventDefault();
               try {
-                await createUserWithEmailAndPassword(auth, signupEmail.current!.value, signupPassword.current!.value);
+                const cred = await createUserWithEmailAndPassword(auth, signupEmail.current!.value, signupPassword.current!.value);
+                await setDoc(doc(collection(db, 'users'), cred.user.uid), {
+                  username: signupUsername.current!.value,
+                  email: signupEmail.current!.value,
+                  tz: 'MST',
+                });
               } catch (err) {
                 console.error(err);
               }

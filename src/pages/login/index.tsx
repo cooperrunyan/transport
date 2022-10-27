@@ -5,14 +5,10 @@ import { Google } from '../../icons/Google';
 import { Logo } from '../../icons/Logo';
 import style from '../../style/pages/login.module.scss';
 
-import { FacebookAuthProvider, getAuth, GithubAuthProvider, GoogleAuthProvider, signInWithPopup, signInWithRedirect } from 'firebase/auth';
-import { useRouter } from 'next/router';
-import { useEffect } from 'react';
-import { app } from '../../firebase/client';
+import { FacebookAuthProvider, getAuth, GithubAuthProvider, GoogleAuthProvider, signInWithRedirect } from 'firebase/auth';
+import { app } from '../../services/firebase/client';
 
 const Page: React.FC = () => {
-  const router = useRouter();
-
   return (
     <div>
       <Logo className={style.Logo} />

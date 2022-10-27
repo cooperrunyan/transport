@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { auth } from '../firebase/client';
+import { auth } from '../services/firebase/client';
 
 const loginRoutes = [/\/login/, /\/login\/email/];
 
@@ -12,12 +12,12 @@ export const AuthGuard: React.FC<{ children: any }> = ({ children }) => {
   useEffect(() => {
     if (error) return console.error(error);
     if (!loading && !user && !isLoginRoute(window.location.href)) router.push('/login');
+    if (!loading && user && isLoginRoute(router.route)) router.push('/');
   }, [user, loading, error]);
 
-  if (!loading && user && isLoginRoute(router.route)) router.push('/');
-  if ((!loading && user) || isLoginRoute(router.route)) return children;
   if (loading) return <p>loading...</p>;
-  if (!user) return null;
+  if ((!loading && user) || isLoginRoute(router.route)) return children;
+  else return <></>;
 };
 
 function isLoginRoute(route: string) {
