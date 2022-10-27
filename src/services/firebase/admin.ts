@@ -6,4 +6,4 @@ if (admin.apps.length === 0)
     credential: admin.credential.cert(serviceAccount as any),
   });
 
-export const verifyIdToken = (token: string) => admin.auth().verifyIdToken(token);
+export const verifyIdToken = (token: string) => (token ? admin.auth().verifyIdToken(token) : null);

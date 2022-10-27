@@ -21,8 +21,9 @@ export const AuthGuard: React.FC<{ children: any }> = ({ children }) => {
     return auth.onIdTokenChanged(async user => {
       const token = await user?.getIdToken();
       if (token) nookies.set(undefined, 'token', token, {});
+      nookies.get(undefined, 'token');
     });
-  }, []);
+  }, [user, loading, error]);
 
   if (loading) return <p>loading...</p>;
   if ((!loading && user) || isLoginRoute(router.route)) return children;
