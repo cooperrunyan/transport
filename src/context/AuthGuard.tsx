@@ -14,6 +14,7 @@ export const AuthGuard: React.FC<{ children: any }> = ({ children }) => {
     if (!loading && !user && !isLoginRoute(window.location.href)) router.push('/login');
   }, [user, loading, error]);
 
+  if (!loading && user && isLoginRoute(router.route)) router.push('/');
   if ((!loading && user) || isLoginRoute(router.route)) return children;
   if (loading) return <p>loading...</p>;
   if (!user) return null;

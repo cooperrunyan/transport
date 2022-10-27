@@ -5,18 +5,13 @@ import { Google } from '../../icons/Google';
 import { Logo } from '../../icons/Logo';
 import style from '../../style/pages/login.module.scss';
 
-import { FacebookAuthProvider, getAuth, GithubAuthProvider, GoogleAuthProvider, signInWithRedirect } from 'firebase/auth';
+import { FacebookAuthProvider, getAuth, GithubAuthProvider, GoogleAuthProvider, signInWithPopup, signInWithRedirect } from 'firebase/auth';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 import { app } from '../../firebase/client';
 
 const Page: React.FC = () => {
   const router = useRouter();
-
-  useEffect(() => {
-    console.log(getAuth().currentUser);
-    if (getAuth().currentUser) router.push('/');
-  }, []);
 
   return (
     <div>
