@@ -1,14 +1,26 @@
-import { signOut } from 'firebase/auth';
-import { useUser } from '../hooks/useUser';
-import { auth } from '../services/firebase/client';
+import nookies from 'nookies';
 
-const Page: React.FC = () => {
-  const { user, data } = useUser();
+import { signOut } from 'firebase/auth';
+import { GetServerSidePropsContext } from 'next';
+import { verifyIdToken } from '../services/firebase/admin';
+import { auth } from '../services/firebase/client';
+import { getUserData, UserData } from '../services/firebase/getUserData';
+
+const Page: React.FC<{ data: UserData }> = ({ data }) => {
   return (
     <div>
-      hello {user?.email} {data?.username} <button onClick={() => signOut(auth)}>logout</button>
+      hello {data.email} {data.username} <button onClick={() => signOut(auth)}>logout</button>
     </div>
   );
 };
 
 export default Page;
+
+export async function getServerSideProps(context: GetServerSidePropsContext) {
+  const token = await verifyIdToken(nookies.get(context).token);
+  const data = await getUserData(token.uid);
+
+  return {
+    props: { data },
+  };
+}

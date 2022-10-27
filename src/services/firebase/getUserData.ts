@@ -5,7 +5,7 @@ export async function getUserData(uid: string): Promise<UserData> {
   return (await getDoc(doc(collection(db, 'users'), uid))).data() as any;
 }
 
-type UserData = {
+export type UserData = {
   tz: string;
   username: string;
   email: string;

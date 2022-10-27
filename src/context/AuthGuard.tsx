@@ -1,3 +1,5 @@
+import nookies from 'nookies';
+
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
@@ -14,6 +16,13 @@ export const AuthGuard: React.FC<{ children: any }> = ({ children }) => {
     if (!loading && !user && !isLoginRoute(window.location.href)) router.push('/login');
     if (!loading && user && isLoginRoute(router.route)) router.push('/');
   }, [user, loading, error]);
+
+  useEffect(() => {
+    return auth.onIdTokenChanged(async user => {
+      const token = await user?.getIdToken();
+      if (token) nookies.set(undefined, 'token', token, {});
+    });
+  }, []);
 
   if (loading) return <p>loading...</p>;
   if ((!loading && user) || isLoginRoute(router.route)) return children;
