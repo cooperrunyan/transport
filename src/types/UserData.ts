@@ -11,5 +11,4 @@ export type UserData = {
   email: string;
   friends: Friend[];
   notifications: Notification[];
-  messages: Message[];
 };

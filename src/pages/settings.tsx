@@ -1,6 +1,5 @@
 import style from '-/style/pages/settings.module.scss';
 
-import type { UserData } from '-/lib/getUserData';
 import { auth, db } from '-/services/firebase/client';
 import { collection, doc, updateDoc } from 'firebase/firestore';
 import { useRouter } from 'next/router';
@@ -12,6 +11,7 @@ import { LogoIcon } from '../components/icons/Logo';
 import { DataContextProvider } from '../context/DataContext';
 import { timezones } from '../lib/timezones';
 import { logout } from '../lib/logout';
+import { UserData } from '../types/UserData';
 
 const Page: React.FC<{ data: UserData }> = ({ data }) => {
   const router = useRouter();

@@ -90,7 +90,6 @@ const Page: React.FC<{ data: UserData }> = ({ data }) => {
                   email: signupEmail.current!.value,
                   tz: getTimezone(),
                   notifications: [],
-                  messages: [],
                   friends: [],
                 } as UserData);
 

@@ -64,7 +64,6 @@ const signinWith = (P: any) =>
       email: cred.user.email,
       tz: getTimezone(),
       notifications: [],
-      messages: [],
       friends: [],
     });
 
