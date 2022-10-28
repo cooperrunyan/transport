@@ -10,8 +10,8 @@ import { auth, db } from '-/services/firebase/client';
 import style from '-/style/pages/login.module.scss';
 import { useRef, useState } from 'react';
 
-import type { UserData } from '-/lib/getUserData';
 import { getTimezone } from '-/lib/getTimezone';
+import type { UserData } from '-/lib/getUserData';
 import { DEFAULT_AVATAR_URL } from '/src/config/constants';
 
 export { getServerSideProps } from '-/lib/getUserData';
@@ -58,7 +58,7 @@ const Page: React.FC<{ data: UserData }> = ({ data }) => {
 
               if (isEmail) email = username;
               else {
-                const q = query(collection(db, 'users'), where('username', '==', username));
+                const q = query(collection(db, 'users'), where('username', '==', username.toLowerCase()));
                 (await getDocs(q)).forEach(acc => {
                   email = acc.data().email;
                 });
@@ -71,7 +71,7 @@ const Page: React.FC<{ data: UserData }> = ({ data }) => {
                 if (auth.currentUser) router.push('/');
               }
             }}>
-            <input ref={loginEmail} name="email" type="text" placeholder="Username/Email" />
+            <input ref={loginEmail} name="email" type="text" placeholder="Username/Email" onChange={e => (e.target.value = e.target.value.toLowerCase())} />
             <input ref={loginPassword} name="password" type="password" placeholder="Password" />
             <button type="submit">Log in</button>
           </form>
@@ -83,7 +83,7 @@ const Page: React.FC<{ data: UserData }> = ({ data }) => {
               try {
                 const cred = await createUserWithEmailAndPassword(auth, signupEmail.current!.value, signupPassword.current!.value);
                 await setDoc(doc(collection(db, 'users'), cred.user.uid), {
-                  username: signupUsername.current!.value,
+                  username: signupUsername.current!.value.toLowerCase(),
                   displayName: signupDisplayName.current!.value,
                   phoneNumber: '',
                   photoUrl: DEFAULT_AVATAR_URL,
@@ -101,7 +101,15 @@ const Page: React.FC<{ data: UserData }> = ({ data }) => {
               }
             }}>
             <input ref={signupEmail} name="email" type="text" placeholder="Email" />
-            <input ref={signupUsername} name="username" type="text" placeholder="Username" />
+            <input
+              ref={signupUsername}
+              onChange={e => {
+                e.target.value = e.target.value.toLowerCase();
+              }}
+              name="username"
+              type="text"
+              placeholder="Username"
+            />
             <input ref={signupDisplayName} name="displayName" type="text" placeholder="Display Name" />
             <input ref={signupPassword} name="password" type="password" placeholder="Password" />
             <input ref={signupConfirmPassword} name="password" type="password" placeholder="Confirm Password" />

@@ -11,6 +11,7 @@ import { BackIcon } from '../components/icons/Back';
 import { LogoIcon } from '../components/icons/Logo';
 import { DataContextProvider } from '../context/DataContext';
 import { timezones } from '../lib/timezones';
+import { logout } from '../lib/logout';
 
 const Page: React.FC<{ data: UserData }> = ({ data }) => {
   const router = useRouter();
@@ -18,7 +19,7 @@ const Page: React.FC<{ data: UserData }> = ({ data }) => {
   const [user, loading, error] = useAuthState(auth);
 
   const [displayName, setDisplayName] = useState('');
-  const [username, setUsername] = useState('');
+  const [username, setUsername] = useState('@');
   const [email, setEmail] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
   const [tz, setTz] = useState('');
@@ -106,13 +107,31 @@ const Page: React.FC<{ data: UserData }> = ({ data }) => {
                 <p>Username:</p>
                 <input type="text" value={username} onChange={e => setUsername(e.target.value)} />
               </div>
-              <button
-                type="submit"
-                disabled={
-                  data.displayName === displayName && data.email === email && data.phoneNumber === phoneNumber && data.tz === tz && data.username === username
-                }>
-                Save
-              </button>
+              <div className={style.buttonRow}>
+                <button
+                  type="submit"
+                  disabled={
+                    data.displayName === displayName && data.email === email && data.phoneNumber === phoneNumber && data.tz === tz && data.username === username
+                  }>
+                  Save
+                </button>
+
+                <div className={style.dangerZone}>
+                  <button
+                    onClick={e => {
+                      e.preventDefault();
+                      logout();
+                    }}>
+                    Logout
+                  </button>
+                  <button
+                    onClick={e => {
+                      e.preventDefault();
+                    }}>
+                    Delete Account
+                  </button>
+                </div>
+              </div>
             </form>
           </div>
         </div>
