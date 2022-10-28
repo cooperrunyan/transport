@@ -75,16 +75,6 @@
         color: var(--grey-5);
       }
     }
-
-    p {
-      font-weight: 400;
-      font-size: 1rem;
-      letter-spacing: -0.03em;
-      color: var(--grey-6);
-      writing-mode: vertical-lr;
-      text-orientation: sideways;
-      transform: rotate(180deg);
-    }
   }
 
   .content {

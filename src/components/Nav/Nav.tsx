@@ -5,6 +5,7 @@ import { LogoIcon } from '-/components/icons/Logo';
 import { PhoneIcon } from '-/components/icons/Phone';
 import { useEffect, useRef } from 'react';
 import { SettingsIcon } from '../icons/Settings';
+import { Username } from '../Username/Username';
 
 import style from './Nav.module.scss';
 import { useData } from '/src/context/DataContext';
@@ -70,7 +71,9 @@ export const Nav: React.FC<{ children: any }> = ({ children }) => {
           </ul>
         </div>
         <div ref={lower} className={style.lower}>
-          <p ref={username}>{data?.username}</p>
+          <Username ref={username} orientation="vertical">
+            {data?.username || ''}
+          </Username>
           <a href="/settings">
             <SettingsIcon />
           </a>
