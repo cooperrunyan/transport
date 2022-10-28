@@ -11,8 +11,8 @@ import style from '-/style/pages/login.module.scss';
 import { useRef, useState } from 'react';
 
 import { getTimezone } from '-/lib/getTimezone';
-import type { UserData } from '-/lib/getUserData';
 import { DEFAULT_AVATAR_URL } from '/src/config/constants';
+import { UserData } from '/src/types/UserData';
 
 export { getServerSideProps } from '-/lib/getUserData';
 
@@ -89,6 +89,9 @@ const Page: React.FC<{ data: UserData }> = ({ data }) => {
                   photoUrl: DEFAULT_AVATAR_URL,
                   email: signupEmail.current!.value,
                   tz: getTimezone(),
+                  notifications: [],
+                  messages: [],
+                  friends: [],
                 } as UserData);
 
                 const token = await cred.user.getIdToken();

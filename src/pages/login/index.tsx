@@ -10,9 +10,9 @@ import { GoogleIcon } from '-/components/icons/Google';
 import { LogoIcon } from '-/components/icons/Logo';
 import style from '-/style/pages/login.module.scss';
 
-import { UserData } from '-/lib/getUserData';
 import { getTimezone } from '-/lib/getTimezone';
 import { app, db } from '-/services/firebase/client';
+import { UserData } from '/src/types/UserData';
 
 export { getServerSideProps } from '-/lib/getUserData';
 
@@ -63,6 +63,9 @@ const signinWith = (P: any) =>
       phoneNumber: cred.user.phoneNumber || '',
       email: cred.user.email,
       tz: getTimezone(),
+      notifications: [],
+      messages: [],
+      friends: [],
     });
 
     const token = await cred.user.getIdToken();

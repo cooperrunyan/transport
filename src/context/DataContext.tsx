@@ -1,5 +1,5 @@
 import { createContext, useContext } from 'react';
-import { UserData } from '../lib/getUserData';
+import { UserData } from '../types/UserData';
 
 const DataContext = createContext<UserData | null>(null);
 

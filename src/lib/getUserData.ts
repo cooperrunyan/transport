@@ -5,6 +5,7 @@ import { GetServerSidePropsContext } from 'next';
 
 import { verifyIdToken } from '-/services/firebase/admin';
 import { db } from '-/services/firebase/client';
+import { UserData } from '../types/UserData';
 
 export async function getServerSideProps(ctx: GetServerSidePropsContext) {
   try {
@@ -29,12 +30,3 @@ export async function getServerSideProps(ctx: GetServerSidePropsContext) {
 export async function getUserData(uid: string): Promise<UserData> {
   return (await getDoc(doc(collection(db, 'users'), uid))).data() as any;
 }
-
-export type UserData = {
-  tz: string;
-  photoUrl: string;
-  phoneNumber: string;
-  displayName: string;
-  username: string;
-  email: string;
-};
