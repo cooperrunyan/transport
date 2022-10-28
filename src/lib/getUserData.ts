@@ -7,12 +7,16 @@ import { verifyIdToken } from '-/services/firebase/admin';
 import { db } from '-/services/firebase/client';
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
-  const token = await verifyIdToken(nookies.get(context).token);
-  const data = token ? (await getUserData(token?.uid)) || null : null;
+  try {
+    const token = await verifyIdToken(nookies.get(context).token);
+    const data = token ? (await getUserData(token?.uid)) || null : null;
 
-  return {
-    props: { data },
-  };
+    return {
+      props: { data },
+    };
+  } catch {
+    return { props: {} };
+  }
 }
 
 export async function getUserData(uid: string): Promise<UserData> {
