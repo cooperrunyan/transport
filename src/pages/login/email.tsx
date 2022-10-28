@@ -11,6 +11,7 @@ import style from '-/style/pages/login.module.scss';
 import { useRef, useState } from 'react';
 
 import type { UserData } from '-/lib/getUserData';
+import { getTimezone } from '-/lib/getTimezone';
 
 export { getServerSideProps } from '-/lib/getUserData';
 
@@ -23,6 +24,7 @@ const Page: React.FC<{ data: UserData }> = ({ data }) => {
 
   const signupEmail = useRef<HTMLInputElement>(null);
   const signupUsername = useRef<HTMLInputElement>(null);
+  const signupDisplayName = useRef<HTMLInputElement>(null);
   const signupPassword = useRef<HTMLInputElement>(null);
   const signupConfirmPassword = useRef<HTMLInputElement>(null);
 
@@ -62,8 +64,11 @@ const Page: React.FC<{ data: UserData }> = ({ data }) => {
               }
 
               const cred = await signInWithEmailAndPassword(auth, email, loginPassword.current!.value);
-              nookies.set(undefined, 'token', await cred.user.getIdToken(), { path: '/*' });
-              if (auth.currentUser) router.push('/');
+              const token = await cred.user.getIdToken();
+              if (token) {
+                nookies.set(undefined, 'token', token, { path: '/*' });
+                if (auth.currentUser) router.push('/');
+              }
             }}>
             <input ref={loginEmail} name="email" type="text" placeholder="Username/Email" />
             <input ref={loginPassword} name="password" type="password" placeholder="Password" />
@@ -78,15 +83,25 @@ const Page: React.FC<{ data: UserData }> = ({ data }) => {
                 const cred = await createUserWithEmailAndPassword(auth, signupEmail.current!.value, signupPassword.current!.value);
                 await setDoc(doc(collection(db, 'users'), cred.user.uid), {
                   username: signupUsername.current!.value,
+                  displayName: signupDisplayName.current!.value,
+                  phoneNumber: '',
+                  photoUrl: '/avatar/default.jpeg',
                   email: signupEmail.current!.value,
-                  tz: 'MST',
-                });
+                  tz: getTimezone(),
+                } as UserData);
+
+                const token = await cred.user.getIdToken();
+                if (token) {
+                  nookies.set(undefined, 'token', token, { path: '/' });
+                  if (auth.currentUser) router.push('/');
+                }
               } catch (err) {
                 console.error(err);
               }
             }}>
             <input ref={signupEmail} name="email" type="text" placeholder="Email" />
             <input ref={signupUsername} name="username" type="text" placeholder="Username" />
+            <input ref={signupDisplayName} name="displayName" type="text" placeholder="Display Name" />
             <input ref={signupPassword} name="password" type="password" placeholder="Password" />
             <input ref={signupConfirmPassword} name="password" type="password" placeholder="Confirm Password" />
             <button type="submit">Sign up</button>

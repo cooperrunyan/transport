@@ -1,3 +1,5 @@
+import nookies from 'nookies';
+
 import { FacebookAuthProvider, getAuth, GithubAuthProvider, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import { collection, doc, setDoc } from 'firebase/firestore';
 
@@ -9,6 +11,7 @@ import { LogoIcon } from '-/components/icons/Logo';
 import style from '-/style/pages/login.module.scss';
 
 import { UserData } from '-/lib/getUserData';
+import { getTimezone } from '-/lib/getTimezone';
 import { app, db } from '-/services/firebase/client';
 
 export { getServerSideProps } from '-/lib/getUserData';
@@ -51,11 +54,17 @@ const Page: React.FC<{ data: UserData }> = ({ data }) => {
 
 export default Page;
 
-const signinWith = (p: any) =>
-  signInWithPopup(getAuth(app), new p()).then(cred => {
-    return setDoc(doc(collection(db, 'users'), cred.user.uid), {
+const signinWith = (P: any) =>
+  signInWithPopup(getAuth(app), new P()).then(async cred => {
+    await setDoc(doc(collection(db, 'users'), cred.user.uid), {
       username: cred.user.email!.split('@').slice(0, -1).join('@'),
+      displayName: cred.user.displayName,
+      photoUrl: cred.user.photoURL,
+      phoneNumber: cred.user.phoneNumber,
       email: cred.user.email,
-      tz: 'MST',
+      tz: getTimezone(),
     });
+
+    const token = await cred.user.getIdToken();
+    if (token) nookies.set(undefined, 'token', token, { path: '/' });
   });

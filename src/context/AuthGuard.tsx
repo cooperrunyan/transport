@@ -21,8 +21,7 @@ export const AuthGuard: React.FC<{ children: any }> = ({ children }) => {
   useEffect(() => {
     return auth.onIdTokenChanged(async user => {
       const token = await user?.getIdToken();
-      if (token) nookies.set(undefined, 'token', token, {});
-      nookies.get(undefined, 'token');
+      if (token) nookies.set(undefined, 'token', token, { path: '/' });
     });
   }, [user, loading, error]);
 

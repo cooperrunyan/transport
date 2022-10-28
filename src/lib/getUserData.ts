@@ -25,6 +25,9 @@ export async function getUserData(uid: string): Promise<UserData> {
 
 export type UserData = {
   tz: string;
+  photoUrl: string;
+  phoneNumber: string;
+  displayName: string;
   username: string;
   email: string;
 };
