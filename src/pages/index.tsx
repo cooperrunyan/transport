@@ -4,6 +4,8 @@ import type { UserData } from '-/lib/getUserData';
 import { NameCluster } from '../components/NameCluster/NameCluster';
 import { Nav } from '../components/Nav/Nav';
 import { DataContextProvider } from '../context/DataContext';
+import { FriendsManager } from '../components/FriendsManager/FriendsManager';
+import { NotificationsCenter } from '../components/NotificationsCenter/NotificationsCenter';
 
 const Page: React.FC<{ data: UserData }> = ({ data }) => {
   return (
@@ -14,9 +16,11 @@ const Page: React.FC<{ data: UserData }> = ({ data }) => {
           <div className={style.content}>
             <div className={style.friends}>
               <h2>Friends</h2>
+              <FriendsManager />
             </div>
             <div className={style.notifications}>
               <h2>Notifications</h2>
+              <NotificationsCenter />
             </div>
           </div>
         </div>
