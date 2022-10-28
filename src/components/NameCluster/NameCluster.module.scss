@@ -1,0 +1,22 @@
+.NameCluster {
+  display: flex;
+  gap: calc(12rem / 16);
+
+  .nameGroup {
+    display: flex;
+    flex-direction: column;
+
+    .name {
+      font-weight: 600;
+      font-size: calc(20rem / 16);
+      letter-spacing: -0.03em;
+    }
+
+    .username {
+      font-weight: 400;
+      font-size: calc(16rem / 16);
+      letter-spacing: -0.03em;
+      color: var(--grey-6);
+    }
+  }
+}
