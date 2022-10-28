@@ -57,10 +57,10 @@ export default Page;
 const signinWith = (P: any) =>
   signInWithPopup(getAuth(app), new P()).then(async cred => {
     await setDoc(doc(collection(db, 'users'), cred.user.uid), {
-      username: cred.user.email!.split('@').slice(0, -1).join('@'),
-      displayName: cred.user.displayName,
-      photoUrl: cred.user.photoURL,
-      phoneNumber: cred.user.phoneNumber,
+      username: cred.user.email!.split('@').slice(0, -1).join('@') || '',
+      displayName: cred.user.displayName || '',
+      photoUrl: cred.user.photoURL || '',
+      phoneNumber: cred.user.phoneNumber || '',
       email: cred.user.email,
       tz: getTimezone(),
     });

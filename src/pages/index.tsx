@@ -12,7 +12,6 @@ const Page: React.FC<{ data: UserData }> = ({ data }) => {
       <Nav>
         <div className={style.layout}>
           <NameCluster photo={data?.photoUrl} name={data?.displayName} username={data?.username} />
-          hello {data?.email} {data?.username} <button onClick={logout}>logout</button>
         </div>
       </Nav>
     </DataContextProvider>

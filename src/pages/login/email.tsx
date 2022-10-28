@@ -12,6 +12,7 @@ import { useRef, useState } from 'react';
 
 import type { UserData } from '-/lib/getUserData';
 import { getTimezone } from '-/lib/getTimezone';
+import { DEFAULT_AVATAR_URL } from '/src/config/constants';
 
 export { getServerSideProps } from '-/lib/getUserData';
 
@@ -85,7 +86,7 @@ const Page: React.FC<{ data: UserData }> = ({ data }) => {
                   username: signupUsername.current!.value,
                   displayName: signupDisplayName.current!.value,
                   phoneNumber: '',
-                  photoUrl: '/avatar/default.jpeg',
+                  photoUrl: DEFAULT_AVATAR_URL,
                   email: signupEmail.current!.value,
                   tz: getTimezone(),
                 } as UserData);
