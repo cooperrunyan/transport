@@ -5,7 +5,7 @@ export const Avatar: React.FC<{ photo: string; size?: number }> = ({ photo, size
   const s = size || 48;
   return (
     <img
-      className={style.Avatar}
+      className={style.Avatar + ' shadow'}
       src={photoUrl(photo)}
       style={{
         width: `calc(${s}rem / 16)`,

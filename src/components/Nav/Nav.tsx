@@ -4,6 +4,7 @@ import { DashboardIcon } from '-/components/icons/Dashboard';
 import { LogoIcon } from '-/components/icons/Logo';
 import { PhoneIcon } from '-/components/icons/Phone';
 import { useEffect, useRef } from 'react';
+import { IconButton } from '../IconButton/IconButton';
 import { SettingsIcon } from '../icons/Settings';
 import { Username } from '../Username/Username';
 
@@ -49,24 +50,24 @@ export const Nav: React.FC<{ children: any }> = ({ children }) => {
         <div className={style.content}>
           <ul>
             <li>
-              <a href="/" className={location.pathname === '/' ? style.active : ''}>
+              <IconButton href="/" active={location.pathname === '/'}>
                 <DashboardIcon />
-              </a>
+              </IconButton>
             </li>
             <li>
-              <a href="/messages" className={location.pathname === '/messages' ? style.active : ''}>
+              <IconButton href="/messages" active={location.pathname === '/messages'}>
                 <ChatIcon />
-              </a>
+              </IconButton>
             </li>
             <li>
-              <a href="/video" className={location.pathname === '/video' ? style.active : ''}>
+              <IconButton href="/video" active={location.pathname === '/video'}>
                 <CameraIcon />
-              </a>
+              </IconButton>
             </li>
             <li>
-              <a href="/phone" className={location.pathname === '/phone' ? style.active : ''}>
+              <IconButton href="/phone" active={location.pathname === '/phone'}>
                 <PhoneIcon />
-              </a>
+              </IconButton>
             </li>
           </ul>
         </div>
@@ -74,9 +75,9 @@ export const Nav: React.FC<{ children: any }> = ({ children }) => {
           <Username ref={username} orientation="vertical">
             {data?.username || ''}
           </Username>
-          <a href="/settings">
+          <IconButton href="/settings">
             <SettingsIcon />
-          </a>
+          </IconButton>
         </div>
       </nav>
       {children}

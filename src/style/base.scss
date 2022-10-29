@@ -28,3 +28,8 @@ html {
   flex-direction: column;
   position: relative;
 }
+
+.shadow {
+  box-shadow: 0 calc(2.4rem / 16) calc(6.4rem / 16) rgba(0, 0, 0, 0.17);
+  border: calc(1rem / 16) solid rgba(255, 255, 255, 0.15);
+}

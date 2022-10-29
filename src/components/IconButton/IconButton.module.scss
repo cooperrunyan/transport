@@ -1,0 +1,59 @@
+.root {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.IconButton {
+  position: absolute;
+
+  width: 200%;
+  height: 200%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+
+  &::before {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    content: '';
+    pointer-events: none;
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.5);
+    width: 100%;
+    height: 100%;
+    border-radius: 100%;
+    background-color: var(--grey-5);
+    transition: all 0.1s ease-in-out;
+  }
+
+  &:hover::before {
+    opacity: 0.2;
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  &:active::before {
+    opacity: 0.2;
+    transform: translate(-50%, -50%) scale(1);
+    background-color: var(--blue-5);
+  }
+
+  svg {
+    width: 50%;
+    height: 50%;
+    transition: all 0.1s ease-in-out;
+    color: var(--grey-5);
+  }
+
+  &.active {
+    svg {
+      color: var(--blue-5);
+    }
+  }
+}
